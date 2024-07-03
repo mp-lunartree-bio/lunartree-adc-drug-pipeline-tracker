@@ -14,7 +14,7 @@ data = load_data()
 # Function to create a table view with a search bar
 def display_table(data, columns, key):
     search_term = st.text_input("Search", key=key)
-    df = pd.DataFrame(data)
+    df = pd.DataFrame(data)[columns]
     if search_term:
         df = df[df.apply(lambda row: row.astype(str).str.contains(search_term, case=False).any(), axis=1)]
     st.dataframe(df[columns])
@@ -27,7 +27,8 @@ with tabs[0]:
     st.header("Drugs")
     # drug_columns = list(data['drugs'][0].keys())  # Customize the columns you want to display
     drug_columns = [
-        'heading', 'names', 'phases', 'Max Phase', 'developers'
+        'heading', 'names', 'phases', 'Max Phase', 'developers',
+        'indications', 'targets', 'payload', 'linker', 'domain', 'antibody'
     ]
     display_table(data['drugs'], drug_columns, key='drugs')
 
