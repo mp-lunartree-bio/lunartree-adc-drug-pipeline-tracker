@@ -25,17 +25,12 @@ tabs = st.tabs(["Drugs", "Orgs", "Trials"])
 # Display data for each tab
 with tabs[0]:
     st.header("Drugs")
-    # drug_columns = list(data['drugs'][0].keys())  # Customize the columns you want to display
-    drug_columns = [
-        'heading', 'names', 'phases', 'Max Phase', 'developers',
-        'indications', 'targets', 'payload', 'linker', 'domain', 'antibody'
-    ]
+    drug_columns = list(data['drugs'][0].keys())  # Customize the columns you want to display
     display_table(data['drugs'], drug_columns, key='drugs')
 
 with tabs[1]:
     st.header("Orgs")
     org_columns = list(data['orgs'][0].keys())  # Customize the columns you want to display
-    org_columns = [c for c in org_columns if c != 'ttd']
     display_table(data['orgs'], org_columns, key='orgs')
 
 with tabs[2]:
